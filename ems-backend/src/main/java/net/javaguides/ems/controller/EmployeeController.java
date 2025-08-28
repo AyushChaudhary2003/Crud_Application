@@ -9,47 +9,84 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000", "https://*.vercel.app"})
-@AllArgsConstructor
-@RestController
-@RequestMapping("/api/employees")
+/**
+ * Employee REST Controller - API Layer
+ * 
+ * This controller handles HTTP requests from the frontend and provides REST APIs.
+ * It follows RESTful design principles for clean API structure.
+ * 
+ * REST API Endpoints:
+ * - POST /api/employees - Create new employee
+ * - GET /api/employees/{id} - Get employee by ID
+ * - GET /api/employees - Get all employees
+ * - PUT /api/employees/{id} - Update employee
+ * - DELETE /api/employees/{id} - Delete employee
+ * 
+ * Key Features:
+ * - CORS enabled for frontend access
+ * - Proper HTTP status codes
+ * - JSON request/response handling
+ * - Exception handling (via global handler)
+ * 
+ * @author Ayush Chaudhary
+ */
+@CrossOrigin(origins = {"http://localhost:3000", "https://*.vercel.app"}) // Allow frontend access
+@AllArgsConstructor // Lombok: Constructor injection
+@RestController // Spring: REST API controller
+@RequestMapping("/api/employees") // Base URL for all endpoints
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService; // Business logic layer
 
-    // Build Add Employee REST API
+    /**
+     * CREATE - Add new employee
+     * POST /api/employees
+     */
     @PostMapping
     public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
         EmployeeDto savedEmployee = employeeService.createEmployee(employeeDto);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED); // 201 Created
     }
 
-    // Build Get Employee REST API
+    /**
+     * READ - Get employee by ID
+     * GET /api/employees/{id}
+     */
     @GetMapping("{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long employeeId) {
         EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
-        return ResponseEntity.ok(employeeDto);
+        return ResponseEntity.ok(employeeDto); // 200 OK
     }
 
-    // Build Get All Employees REST API
+    /**
+     * READ - Get all employees
+     * GET /api/employees
+     */
     @GetMapping
     public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
         List<EmployeeDto> employees = employeeService.getAllEmployees();
-        return ResponseEntity.ok(employees);
+        return ResponseEntity.ok(employees); // 200 OK
     }
 
-    // Build Update Employee REST API
+    /**
+     * UPDATE - Modify existing employee
+     * PUT /api/employees/{id}
+     */
     @PutMapping("{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId,
                                                       @RequestBody EmployeeDto updatedEmployee) {
         EmployeeDto employeeDto = employeeService.updateEmployee(employeeId, updatedEmployee);
-        return ResponseEntity.ok(employeeDto);
+        return ResponseEntity.ok(employeeDto); // 200 OK
     }
 
-    // Build Delete Employee REST API
+    /**
+     * DELETE - Remove employee
+     * DELETE /api/employees/{id}
+     */
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId) {
         employeeService.deleteEmployee(employeeId);
-        return ResponseEntity.ok("Employee deleted successfully!.");
+        return ResponseEntity.ok("Employee deleted successfully!"); // 200 OK
     }
+
 }
