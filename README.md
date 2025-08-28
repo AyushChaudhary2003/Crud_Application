@@ -756,33 +756,65 @@ npm run build
 ### Common Issues
 
 #### Backend Won't Start
-```bash
+
+**Windows/PowerShell Commands:**
+```powershell
 # Check Java version
 java -version
 
 # Check if port 8080 is in use
-netstat -an | grep 8080
+netstat -an | findstr 8080
+
+# Stop any Java processes if needed
+Get-Process | Where-Object {$_.ProcessName -eq "java"} | Stop-Process -Force
 
 # Check MySQL connection
 mysql -u root -p -e "SHOW DATABASES;"
 ```
 
+**Common Solutions:**
+- Ensure MySQL is running
+- Verify `application.properties` database credentials
+- Check if port 8080 is already in use
+- Remove any duplicate controller files (e.g., VercelHandler.java)
+
 #### Frontend Build Errors
-```bash
+
+**Windows/PowerShell Commands:**
+```powershell
 # Clear node modules and reinstall
-rm -rf node_modules package-lock.json
+Remove-Item -Recurse -Force node_modules, package-lock.json -ErrorAction SilentlyContinue
 npm install
 
 # Check Node.js version
 node --version
 npm --version
+
+# Kill any Node processes if needed
+Get-Process | Where-Object {$_.ProcessName -eq "node"} | Stop-Process -Force
 ```
+
+**Common Solutions:**
+- Ensure Node.js version 18+ is installed
+- Clear npm cache: `npm cache clean --force`
+- Delete node_modules and reinstall dependencies
 
 #### Database Connection Issues
 1. Verify MySQL is running
 2. Check username/password in `application.properties`
 3. Ensure database `ems` exists
 4. Verify MySQL port (default: 3306)
+
+#### Mapping Conflicts (Spring Boot)
+**Error**: `Ambiguous mapping. Cannot map 'employeeController' method`
+
+**Solution**: Remove duplicate controller files:
+```powershell
+# Remove any duplicate handlers
+Remove-Item "src\main\java\net\javaguides\ems\api\VercelHandler.java" -Force -ErrorAction SilentlyContinue
+```
+
+This error occurs when multiple controllers have the same REST endpoint mappings.
 
 #### CORS Errors
 - Backend includes `@CrossOrigin` annotations
