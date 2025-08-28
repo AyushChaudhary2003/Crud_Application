@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD App Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Management System - Test</h1>
+        <p>Testing Vercel deployment...</p>
+        <div id="employees"></div>
+        
+        <script>
+            console.log('Script starting...');
+            
+            // Test API call
+            fetch('https://crud-project-qkf2douv8-ayushs-projects-31542b2b.vercel.app/api/employees')
+                .then(response => {
+                    console.log('Response:', response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data:', data);
+                    document.getElementById('employees').innerHTML = 
+                        '<h2>Employees:</h2>' + 
+                        '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('employees').innerHTML = 
+                        '<h2>Error:</h2>' + error.message;
+                });
+        </script>
+    </div>
+</body>
+</html>
