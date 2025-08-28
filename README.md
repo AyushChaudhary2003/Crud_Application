@@ -41,11 +41,13 @@ The **Employee Management System (EMS)** is a comprehensive full-stack web appli
 ### ✨ Key Highlights
 
 - 🚀 **Modern Tech Stack**: Spring Boot 3.3.10 + React 19.1.1
-- 🎨 **Responsive UI**: Bootstrap-powered responsive design
-- 🔄 **Real-time Updates**: Instant data synchronization
-- 🗄️ **Robust Database**: MySQL integration with JPA/Hibernate
-- 🛡️ **Data Validation**: Comprehensive input validation
-- 📱 **Mobile Friendly**: Works seamlessly across devices
+- 🎨 **Professional UI**: Bootstrap-powered responsive design with dark/light themes
+- 🔄 **Real-time Features**: Instant search, theme switching, and data synchronization
+- 🗄️ **Robust Database**: MySQL integration with JPA/Hibernate ORM
+- 🛡️ **Data Validation**: Comprehensive input validation with visual feedback
+- 📱 **Mobile Friendly**: Responsive design that works seamlessly across all devices
+- 💼 **Interview Ready**: Extensively commented code for technical discussions
+- 🔗 **Professional Networking**: Integrated email and LinkedIn contact options
 
 ---
 
@@ -53,17 +55,26 @@ The **Employee Management System (EMS)** is a comprehensive full-stack web appli
 
 ### Core Functionality
 - ✅ **Employee Registration**: Add new employees with complete details
-- 📖 **Employee Directory**: View all employees in a clean, organized table
+- 📖 **Employee Directory**: View all employees with serial number system (S.No)
+- 🔍 **Advanced Search**: Real-time search across name and email fields
 - ✏️ **Profile Updates**: Edit employee information seamlessly
-- 🗑️ **Record Management**: Delete employee records with confirmation
-- 🔍 **Data Validation**: Form validation for data integrity
+- 🗑️ **Smart Deletion**: Delete employee records with confirmation dialogs
+- � **Data Validation**: Comprehensive form validation for data integrity
+- 🌓 **Theme Toggle**: Professional dark/light mode switching
+
+### Professional Features
+- 📧 **Direct Contact**: Email integration for immediate communication
+- 🔗 **LinkedIn Integration**: Professional networking connection
+- 📱 **Responsive Design**: Mobile-first approach for all devices
+- 🎨 **Modern UI**: Clean, professional interface with Bootstrap styling
 
 ### Technical Features
 - 🔌 **RESTful API**: Clean, well-documented REST endpoints
-- 🔄 **State Management**: Efficient React state handling
-- 🎯 **Error Handling**: Comprehensive error management
-- 📊 **Database Persistence**: Reliable MySQL data storage
+- 🔄 **State Management**: Efficient React state handling with hooks
+- 🎯 **Error Handling**: Comprehensive error management throughout
+- 📊 **Database Persistence**: Reliable MySQL data storage with JPA
 - 🌐 **CORS Support**: Cross-origin resource sharing enabled
+- 📝 **Code Documentation**: Extensive comments for interview readiness
 
 ---
 
@@ -746,8 +757,32 @@ We welcome contributions! Please follow these steps:
 ## ‍💻 Author
 
 **Ayush Chaudhary**
-- GitHub: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
-- Email: [ayushiaf.ac@gmail.com]
+- 🔗 **LinkedIn**: [Connect with Ayush](https://www.linkedin.com/in/ayush-chaudhary-652598259/)
+- 📧 **Email**: [ayushiaf.ac@gmail.com](mailto:ayushiaf.ac@gmail.com)
+- 🐙 **GitHub**: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
+- 💼 **Portfolio**: This Employee Management System showcases full-stack development skills
+
+---
+
+## 📝 Code Documentation
+
+This project includes comprehensive comments throughout the codebase for:
+- **Interview Preparation**: Detailed explanations of technical concepts
+- **Learning Reference**: Clear documentation of design patterns and best practices
+- **Maintenance**: Easy understanding for future enhancements
+- **Code Review**: Professional-level commenting standards
+
+### Backend Documentation
+- **Controllers**: REST API endpoint documentation with HTTP methods
+- **Services**: Business logic explanation with transaction handling
+- **Entities**: JPA annotations and database mapping details
+- **Repositories**: Data access patterns and query explanations
+
+### Frontend Documentation
+- **Components**: React hooks usage and state management patterns
+- **Services**: API integration and error handling strategies
+- **Routing**: SPA navigation and URL parameter handling
+- **Styling**: Bootstrap integration and responsive design principles
 
 ---
 

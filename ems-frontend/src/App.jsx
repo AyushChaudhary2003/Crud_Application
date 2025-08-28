@@ -1,3 +1,35 @@
+/**
+ * Main App Component - Application Root & Routing Configuration
+ * 
+ * This is the central component that orchestrates the entire Employee Management System.
+ * It sets up the application structure, routing, and layout.
+ * 
+ * Architecture Overview:
+ * - Single Page Application (SPA) with client-side routing
+ * - Consistent header/footer layout across all pages
+ * - Dynamic content area based on current route
+ * - Clean URL structure for SEO and user experience
+ * 
+ * Key Features:
+ * - React Router DOM for navigation without page refreshes
+ * - Responsive layout that works on all devices
+ * - Logical route structure matching user workflows
+ * - Professional application shell with modern design
+ * 
+ * Application Routes:
+ * - / (root) → Employee List (default landing page)
+ * - /employees → Employee List (explicit employee page)
+ * - /add-employee → Add Employee Form
+ * - /edit-employee/:id → Edit Employee Form (with dynamic ID)
+ * 
+ * Technical Stack:
+ * - React 19.1.1 (latest) for component architecture
+ * - React Router DOM 7.8.2 for client-side routing
+ * - Bootstrap 5.3.7 for responsive UI framework
+ * - CSS Grid/Flexbox for layout management
+ * 
+ * @author Ayush Chaudhary
+ */
 import './App.css'
 import FooterComponent from './components/FooterComponent'
 import HeaderComponent from './components/HeaderComponent'
@@ -5,52 +37,52 @@ import ListEmployeeComponent from './components/ListEmployeeComponent'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import EmployeeComponent from './components/EmployeeComponent'
 
-/**
- * Main App Component - Application Root
- * 
- * This is the main component that sets up routing for the entire application.
- * Uses React Router for client-side navigation between different pages.
- * 
- * Features:
- * - Single Page Application (SPA) with multiple views
- * - Client-side routing (no page refreshes)
- * - Consistent header and footer across all pages
- * - Clean URL structure for different operations
- * 
- * Routes:
- * - / and /employees - Show list of all employees
- * - /add-employee - Form to add new employee
- * - /edit-employee/:id - Form to edit existing employee
- * 
- * Technologies:
- * - React 19.1.1 for UI components
- * - React Router DOM for navigation
- * - Bootstrap for responsive styling
- * 
- * @author Ayush Chaudhary
- */
 function App() {
   return (
     <BrowserRouter>
-      {/* Header appears on all pages */}
+      {/* 
+        HEADER SECTION
+        - Persistent across all routes
+        - Contains branding, navigation, and user controls
+        - Includes contact information and theme toggle
+      */}
       <HeaderComponent />
       
-      {/* Route definitions - which component to show for each URL */}
-      <Routes>
-        {/* Home page - shows employee list */}
-        <Route path="/" element={<ListEmployeeComponent />} />
-        
-        {/* Employee list page */}
-        <Route path="/employees" element={<ListEmployeeComponent />} />
-        
-        {/* Add new employee form */}
-        <Route path='/add-employee' element={<EmployeeComponent/>} />
+      {/* 
+        MAIN CONTENT AREA
+        - Dynamic content based on current route
+        - Proper semantic HTML structure
+        - Responsive container for all page content
+      */}
+      <main className="main-content">
+        {/* 
+          ROUTING CONFIGURATION
+          - Maps URLs to React components
+          - Enables SPA navigation without page reloads
+          - Supports both exact matches and parameterized routes
+        */}
+        <Routes>
+          {/* HOME ROUTE - Default landing page */}
+          <Route path="/" element={<ListEmployeeComponent />} />
+          
+          {/* EMPLOYEE LIST - Explicit employee management page */}
+          <Route path="/employees" element={<ListEmployeeComponent />} />
+          
+          {/* ADD EMPLOYEE - Form for creating new employees */}
+          <Route path='/add-employee' element={<EmployeeComponent/>} />
 
-        {/* Edit existing employee form (with ID parameter) */}
-        <Route path='/edit-employee/:id' element={<EmployeeComponent />} />
-      </Routes>
+          {/* EDIT EMPLOYEE - Form for updating existing employees */}
+          {/* :id parameter allows dynamic employee ID in URL */}
+          <Route path='/edit-employee/:id' element={<EmployeeComponent />} />
+        </Routes>
+      </main>
       
-      {/* Footer appears on all pages */}
+      {/* 
+        FOOTER SECTION
+        - Persistent across all routes
+        - Contains copyright and additional info
+        - Professional application closure
+      */}
       <FooterComponent />
     </BrowserRouter>
   )
