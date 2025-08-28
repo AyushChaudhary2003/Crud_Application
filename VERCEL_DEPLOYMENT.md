@@ -7,15 +7,16 @@
 2. Vercel account (free)
 3. PlanetScale account (free MySQL cloud database)
 
-### Step 1: Set up Cloud Database (PlanetScale)
+### Step 1: Set up Cloud Database (Railway - FREE)
 
-1. Go to [PlanetScale](https://planetscale.com) and create a free account
-2. Create a new database named `ems-database`
-3. Get your connection details:
-   - Database URL
-   - Username  
-   - Password
-4. Create the employees table:
+1. Go to [Railway](https://railway.app) and create a free account
+2. Click "New Project" → "Add MySQL"
+3. Railway will automatically create a MySQL database
+4. Go to your database → "Connect" tab
+5. Copy the connection details:
+   - **Database URL** (looks like: `mysql://username:password@host:port/railway`)
+   - Or individual credentials: Host, Port, Username, Password, Database
+6. Create the employees table using Railway's built-in console:
    ```sql
    CREATE TABLE employee (
        id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -23,6 +24,12 @@
        last_name VARCHAR(100) NOT NULL,
        email VARCHAR(100) UNIQUE NOT NULL
    );
+   
+   -- Add sample data
+   INSERT INTO employee (first_name, last_name, email) VALUES
+   ('Piyush', 'Chaudhary', 'chaudharypiyush016@gmail.com'),
+   ('Ankit', 'Kamat', 'mrexcalibur@gmail.com'),
+   ('Rohit', 'Kumar', 'rohit.kumar@example.com');
    ```
 
 ### Step 2: Deploy Backend to Vercel
@@ -46,9 +53,9 @@
    - Import your GitHub repository
    - Select the `ems-backend` folder
    - Set environment variables:
-     - `DATABASE_URL`: Your PlanetScale connection string
-     - `DATABASE_USERNAME`: Your PlanetScale username
-     - `DATABASE_PASSWORD`: Your PlanetScale password
+     - `DATABASE_URL`: Your Railway connection string  
+     - `DATABASE_USERNAME`: Your Railway username
+     - `DATABASE_PASSWORD`: Your Railway password
      - `SPRING_PROFILES_ACTIVE`: `vercel`
    - Deploy
 
