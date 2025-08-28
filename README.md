@@ -31,7 +31,6 @@
 - [Frontend Structure](#-frontend-structure)
 - [Backend Structure](#-backend-structure)
 - [Contributing](#-contributing)
-- [License](#-license)
 
 ---
 
@@ -365,21 +364,35 @@ npm list
 
 ## 🚀 Running the Application
 
-### Method 1: Development Mode (Recommended)
+### 🔥 **Quick Start Commands**
 
-#### Terminal 1 - Start Backend Server
-```bash
-# Navigate to backend directory
+#### **Step 1: Start Backend Server (Terminal 1)**
+```powershell
+# Navigate to project root
+cd "C:\Users\ayush\OneDrive\Desktop\CRUD (Project1)\full-stack"
+
+# Go to backend directory
 cd ems-backend
 
 # Start Spring Boot application
-./mvnw spring-boot:run
-
-# For Windows
 .\mvnw.cmd spring-boot:run
 ```
 
-**Expected Output:**
+#### **Step 2: Start Frontend Server (Terminal 2)**
+```powershell
+# Open new terminal and navigate to project root
+cd "C:\Users\ayush\OneDrive\Desktop\CRUD (Project1)\full-stack"
+
+# Go to frontend directory
+cd ems-frontend
+
+# Start React development server
+npm run dev
+```
+
+### 📊 **Expected Output**
+
+#### Backend (Spring Boot) - Terminal 1:
 ```
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -389,26 +402,76 @@ cd ems-backend
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v3.3.10)
 
-Started EmsBackendApplication in X.XXX seconds
-Tomcat started on port 8080 (http) with context path '/'
+2025-XX-XX 10:XX:XX.XXX  INFO --- [main] n.j.ems.EmsBackendApplication
+Started EmsBackendApplication in 3.245 seconds (JVM running for 3.567)
+Tomcat started on port(s): 8080 (http) with context path ''
 ```
 
-#### Terminal 2 - Start Frontend Server
-```bash
-# Navigate to frontend directory
-cd ems-frontend
-
-# Start development server
-npm run dev
+#### Frontend (React + Vite) - Terminal 2:
 ```
-
-**Expected Output:**
-```
-VITE v7.1.3  ready in XXXms
+VITE v7.1.3  ready in 324 ms
 
 ➜  Local:   http://localhost:3000/
 ➜  Network: use --host to expose
+➜  press h to show help
+
+ready in 324ms.
 ```
+
+### 🌍 **Access Points**
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| **Frontend** | http://localhost:3000 | React application interface |
+| **Backend API** | http://localhost:8080 | Spring Boot REST API |
+| **Employee API** | http://localhost:8080/api/employees | Employee CRUD endpoints |
+
+### ✅ **Verification Steps**
+
+#### 1. Test Backend API:
+```powershell
+# Test API endpoint
+Invoke-WebRequest -Uri "http://localhost:8080/api/employees" -Method GET
+```
+
+#### 2. Test Frontend:
+- Open browser and navigate to http://localhost:3000
+- You should see the Employee Management System interface
+
+### 🛑 **Stopping the Application**
+
+#### Stop Backend:
+- In Terminal 1: Press `Ctrl + C`
+
+#### Stop Frontend:
+- In Terminal 2: Press `Ctrl + C`
+
+### 🔄 **Alternative Running Methods**
+
+#### Method 1: Using Maven Wrapper (Current)
+```powershell
+# Backend
+cd ems-backend
+.\mvnw.cmd spring-boot:run
+
+# Frontend  
+cd ems-frontend
+npm run dev
+```
+
+#### Method 2: Using Java JAR (Production)
+```powershell
+# Build JAR file
+cd ems-backend
+.\mvnw.cmd clean package
+
+# Run JAR file
+java -jar target\ems-backend-0.0.1-SNAPSHOT.jar
+```
+
+#### Method 3: IDE Integration
+- **IntelliJ IDEA**: Right-click `EmsBackendApplication.java` → Run
+- **VS Code**: Open integrated terminal and run commands above
 
 ---
 
@@ -680,13 +743,7 @@ We welcome contributions! Please follow these steps:
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
+## ‍💻 Author
 
 **Ayush Chaudhary**
 - GitHub: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
