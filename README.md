@@ -690,7 +690,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Ayush Chaudhary**
 - GitHub: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
-- Email: [Your Email]
+- Email: [ayushiaf.ac@gmail.com]
 
 ---
 
