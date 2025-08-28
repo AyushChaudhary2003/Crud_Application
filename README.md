@@ -10,7 +10,9 @@
 
 **A modern, full-stack Employee Management System built with Spring Boot and React**
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [Usage](#-usage) • [API Documentation](#-api-documentation)
+> 🚀 **Quick Start**: This project is ready for local development! Follow the [Running the Application](#-running-the-application) section to get started in minutes.
+
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation--setup) • [Quick Start](#-running-the-application) • [API Documentation](#-api-documentation)
 
 </div>
 
@@ -23,6 +25,7 @@
 - [Tech Stack](#-tech-stack)
 - [System Architecture](#-system-architecture)
 - [Technical Concepts Explained](#-technical-concepts-explained)
+- [Project Structure](#-project-structure)
 - [Prerequisites](#-prerequisites)
 - [Installation & Setup](#-installation--setup)
 - [Running the Application](#-running-the-application)
@@ -30,7 +33,11 @@
 - [Database Schema](#-database-schema)
 - [Frontend Structure](#-frontend-structure)
 - [Backend Structure](#-backend-structure)
+- [Development & Testing](#-development--testing)
+- [Troubleshooting](#-troubleshooting)
 - [Contributing](#-contributing)
+- [Author](#-author)
+- [Code Documentation](#-code-documentation)
 
 ---
 
@@ -301,7 +308,65 @@ Before running this application, ensure you have the following installed:
 
 ---
 
-## 🔧 Installation & Setup
+## � Project Structure
+
+This project has been cleaned and optimized for professional development and interviews:
+
+```
+📁 Employee Management System/
+├── 📁 .vscode/                 # VS Code settings (minimal, useful)
+│   └── 📄 settings.json        # Java & build configuration
+├── 📁 ems-backend/            # Spring Boot backend
+│   ├── 📁 src/main/java/      # Java source code with extensive comments
+│   │   └── 📁 net/javaguides/ems/
+│   │       ├── 📄 EmsBackendApplication.java
+│   │       ├── 📁 controller/  # REST API endpoints
+│   │       ├── 📁 service/     # Business logic layer
+│   │       ├── 📁 entity/      # JPA entities
+│   │       ├── 📁 repository/  # Data access layer
+│   │       ├── 📁 dto/         # Data transfer objects
+│   │       ├── 📁 mapper/      # Entity-DTO mapping
+│   │       └── 📁 exception/   # Custom exceptions
+│   ├── 📁 src/main/resources/ # Application properties
+│   ├── 📁 target/             # Compiled classes (auto-generated)
+│   ├── 📄 pom.xml             # Maven configuration
+│   ├── 📄 mvnw & mvnw.cmd     # Maven wrapper
+│   └── 📄 .gitignore          # Git ignore rules
+├── 📁 ems-frontend/           # React frontend
+│   ├── 📁 src/                # React source code with comprehensive comments
+│   │   ├── 📄 App.jsx         # Main application component
+│   │   ├── 📄 App.css         # Application styles with dark/light themes
+│   │   ├── 📁 components/     # Reusable React components
+│   │   │   ├── 📄 HeaderComponent.jsx      # Navigation with contact links
+│   │   │   ├── 📄 ListEmployeeComponent.jsx # Employee list with search & S.No
+│   │   │   ├── 📄 EmployeeComponent.jsx     # Add/Edit employee form
+│   │   │   └── 📄 FooterComponent.jsx       # Application footer
+│   │   └── 📁 services/       # API communication layer
+│   │       └── 📄 EmployeeService.js        # Axios-based API calls
+│   ├── 📁 public/             # Static assets
+│   │   └── 📄 vite.svg        # Vite logo
+│   ├── 📁 node_modules/       # Dependencies (auto-generated)
+│   ├── 📄 package.json        # NPM configuration
+│   ├── 📄 vite.config.js      # Vite build configuration
+│   ├── 📄 .env.development    # Development environment variables
+│   └── 📄 .gitignore          # Git ignore rules
+└── 📄 README.md               # This comprehensive documentation
+```
+
+### 🧹 **Recently Cleaned Up**
+
+This project has been professionally cleaned to remove:
+- ❌ Deployment configuration files (Docker, Vercel, Railway, etc.)
+- ❌ Duplicate documentation and test files
+- ❌ Alternative backend implementations
+- ❌ Mock data files
+- ❌ Failed deployment artifacts
+
+**Result**: Clean, focused codebase perfect for interviews and portfolio presentation.
+
+---
+
+## �🔧 Installation & Setup
 
 ### 1. Clone the Repository
 ```bash
