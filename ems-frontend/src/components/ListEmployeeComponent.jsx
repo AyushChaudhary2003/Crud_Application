@@ -4,31 +4,19 @@ import{useNavigate} from 'react-router-dom'
 
 const ListEmployeeComponent = () => {
     const [employees, setEmployees] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     const navigator = useNavigate();
 
     useEffect(() => {
-        console.log('ListEmployeeComponent mounted');
-        console.log('About to call getAllEmployees');
         getAllemployees();
 
     }, []);
 
     function getAllemployees(){
-        console.log('getAllEmployees called');
-        setLoading(true);
-        setError(null);
-        
         listEmployees().then((response) => {
-            console.log('API Response:', response.data);
             setEmployees(response.data);
-            setLoading(false);
         }).catch(error => {
-            console.error('API Error:', error);
-            setError(error.message);
-            setLoading(false);
+            console.error(error);
         });
     }
 
@@ -56,10 +44,6 @@ const ListEmployeeComponent = () => {
         <div className="container">
             <h1 className="text-center mb-4">List of Employees</h1>
             <button className='btn btn-primary mb-2' onClick={addNewEmployee}> Add Employee</button>
-            
-            {loading && <div className="alert alert-info">Loading employees...</div>}
-            {error && <div className="alert alert-danger">Error: {error}</div>}
-            
             <div className="row justify-content-center">
                 <div className="col-12">
                     <table className="table table-striped table-bordered">

@@ -1,9 +1,6 @@
 import axios from "axios";
 
-// Hardcoded API URL for production deployment
-const REST_API_BASE_URL = 'https://crud-project-qkf2douv8-ayushs-projects-31542b2b.vercel.app/api/employees';
-
-console.log('Using API URL:', REST_API_BASE_URL);
+const REST_API_BASE_URL = 'http://localhost:8080/api/employees';
 
 export const listEmployees = () => axios.get(REST_API_BASE_URL);
 
