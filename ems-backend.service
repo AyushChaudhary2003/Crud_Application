@@ -1,0 +1,19 @@
+[Unit]
+Description=EMS Backend Spring Boot Application
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+WorkingDirectory=/opt/ems-backend/ems-backend
+Environment=DATABASE_URL=jdbc:mysql://sql12.freesqldatabase.com:3306/sql12796422
+Environment=DATABASE_USERNAME=sql12796422
+Environment=DATABASE_PASSWORD=c8lcKVJtNt
+Environment=SPRING_PROFILES_ACTIVE=vercel
+Environment=SERVER_PORT=8080
+ExecStart=/usr/bin/java -jar target/ems-backend-0.0.1-SNAPSHOT.jar
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

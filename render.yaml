@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: ems-backend
+    runtime: docker
+    dockerfilePath: ./ems-backend/Dockerfile

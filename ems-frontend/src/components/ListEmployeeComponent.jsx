@@ -18,28 +18,24 @@ const ListEmployeeComponent = () => {
         }).catch(error => {
             console.error(error);
         });
-
     }
 
     function addNewEmployee(){
         navigator('/add-employee')
-
     }
 
     function updateEmployee(id){
         navigator(`/edit-employee/${id}`)
     }
+    
     function removeEmployee(id){
         console.log(id);
 
         deleteEmployee(id).then((response) =>{
             getAllemployees(); 
-
         }).catch(error=> {
             console.error(error);
         })
-
-
     }
 
 
@@ -72,9 +68,7 @@ const ListEmployeeComponent = () => {
                                         <button className='btn btn-danger' onClick={() => removeEmployee(employee.id)}
                                             style={{marginLeft: '10px'}}
                                             >Delete</button>
-
                                     </td>
-                                    
                                 </tr>
                             )}
                         </tbody>
