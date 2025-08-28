@@ -34,3 +34,7 @@ build/
 
 # Exclude sensitive config
 src/main/resources/application.properties
+
+# OpenJDK installations (should not be committed)
+../openJdk-24/
+../ems-frontend/OpenJDK-24/
