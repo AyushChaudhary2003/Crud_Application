@@ -1,372 +1,388 @@
 # 🏢 Employee Management System (EMS)
 
+A modern, full-stack web application for managing employee data with complete CRUD operations, built using Spring Boot and React.
+
+## 🚀 Tech Stack
+
+**Backend Technologies:**
+- **Java 21** - Core programming language
+- **Spring Boot 3.3.10** - Application framework with embedded Tomcat server
+- **Spring Data JPA** - Data persistence and ORM layer
+- **Hibernate** - Object-Relational Mapping (ORM) framework
+- ## 🔧 Technology Deep Dive
+
+### What is CRUD?
+**CRUD** represents the four basic operations of persistent storage:
+- **Create** - Add new employee records (POST)
+- **Read** - Retrieve employee data (GET)
+- **Update** - Modify existing records (PUT)
+- **Delete** - Remove records (DELETE)
+
+### What is Maven?
+**Maven** is a build automation tool for Java projects:
+- **Dependency Management**: Automatically downloads required libraries
+- **Build Lifecycle**: Standardized compile, test, package process
+- **Project Structure**: Convention over configuration
+- **Plugin System**: Extensible build functionality
+
+**Key Maven Commands:**
+```bash
+./mvnw clean          # Clean previous builds
+./mvnw compile        # Compile source code
+./mvnw test           # Run unit tests
+./mvnw package        # Create JAR file
+./mvnw spring-boot:run # Run Spring Boot application
+```
+
+### What is Vite?
+**Vite** is a modern frontend build tool:
+- **Fast Development**: Lightning-fast hot module replacement (HMR)
+- **ES Modules**: Native ES module support
+- **Optimized Builds**: Efficient production bundles with Rollup
+- **Plugin Ecosystem**: Rich plugin system for various frameworks
+
+### React Concepts Used
+
+**Functional Components:**
+```jsx
+function EmployeeComponent() {
+  const [employee, setEmployee] = useState({});
+  
+  useEffect(() => {
+    // Load employee data
+  }, []);
+  
+  return <div>Employee Form</div>;
+}
+```
+
+**Key React Features:**
+- **JSX**: JavaScript syntax extension for HTML-like code
+- **useState Hook**: Manages component state
+- **useEffect Hook**: Handles side effects (API calls)
+- **React Router**: Client-side navigation
+
+### Bootstrap Integration
+**Bootstrap 5.3.7** provides:
+- **Responsive Grid**: Mobile-first layout system
+- **Pre-built Components**: Forms, buttons, tables, cards
+- **Utility Classes**: Spacing, colors, typography helpers
+- **CSS Variables**: Customizable design system
+
+---
+
+## 🚨 Troubleshooting Guide
+
+### Common Backend Issues
+
+**Problem: Port 8080 already in use**
+```bash
+# Find process using port 8080
+netstat -ano | findstr :8080
+
+# Kill the process (replace PID with actual process ID)
+taskkill /PID <PID> /F
+
+# Or change port in application.properties
+server.port=8081
+```
+
+**Problem: MySQL connection failed**
+- ✅ Verify MySQL is running: `net start mysql80`
+- ✅ Check username/password in `application.properties`
+- ✅ Ensure database `ems` exists
+- ✅ Verify MySQL port (default: 3306)
+
+**Problem: Java version mismatch**
+```bash
+# Check Java version
+java -version
+
+# Should show Java 21 or higher
+# If not, update JAVA_HOME environment variable
+```
+
+### Common Frontend Issues
+
+**Problem: npm install fails**
+```bash
+# Clear npm cache
+npm cache clean --force
+
+# Delete node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# Reinstall dependencies
+npm install
+```
+
+**Problem: Port 3000 already in use**
+```bash
+# Kill process on port 3000
+npx kill-port 3000
+
+# Or use different port
+npm run dev -- --port 3001
+```
+
+**Problem: CORS errors**
+- ✅ Backend includes `@CrossOrigin` annotations
+- ✅ Check browser developer console for specific errors
+- ✅ Verify frontend runs on port 3000
+
+### Build Issues
+
+**Problem: Backend won't compile**
+```bash
+# Clean and retry
+./mvnw clean compile
+
+# Check for syntax errors in Java files
+# Verify MySQL connector dependency in pom.xml
+```
+
+**Problem: Frontend build fails**
+```bash
+# Check for TypeScript/ESLint errors
+npm run lint
+
+# Fix dependency issues
+npm audit fix
+
+# Clear Vite cache
+rm -rf node_modules/.vite
+```
+
+---
+
+## 🛠️ Development Workflow
+
+### Adding New Features
+
+**Backend Development:**
+1. Create new entity in `entity/` package
+2. Add repository interface in `repository/` package
+3. Implement service in `service/impl/` package
+4. Create REST controller in `controller/` package
+5. Test with Postman or curl
+
+**Frontend Development:**
+1. Create new components in `components/` folder
+2. Add API calls to `services/` folder
+3. Update routing in `App.jsx`
+4. Style with Bootstrap classes
+5. Test in browser
+
+### Testing Strategy
+
+**Backend Testing:**
+```bash
+# Run all tests
+./mvnw test
+
+# Run specific test class
+./mvnw test -Dtest=EmployeeServiceTest
+
+# Run with coverage
+./mvnw jacoco:report
+```
+
+**Frontend Testing:**
+```bash
+# Lint code
+npm run lint
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+---
+
+## 📚 Learning Resources
+
+### Spring Boot
+- [Spring Boot Official Documentation](https://spring.io/projects/spring-boot)
+- [Spring Data JPA Guide](https://spring.io/guides/gs/accessing-data-jpa/)
+- [Building REST APIs](https://spring.io/guides/gs/rest-service/)
+
+### React
+- [React Official Documentation](https://react.dev/)
+- [React Hooks Guide](https://react.dev/reference/react)
+- [React Router Documentation](https://reactrouter.com/)
+
+### Database
+- [MySQL Documentation](https://dev.mysql.com/doc/)
+- [JPA/Hibernate Tutorial](https://hibernate.org/orm/documentation/)
+
+---
+
+## 🤝 Contributing
+
+### Development Setup
+1. **Fork** the repository
+2. **Clone** your fork locally
+3. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+4. **Make** your changes
+5. **Test** thoroughly
+6. **Commit** with clear messages: `git commit -m 'Add amazing feature'`
+7. **Push** to your fork: `git push origin feature/amazing-feature`
+8. **Create** a Pull Request
+
+### Code Standards
+- **Java**: Follow Google Java Style Guide
+- **JavaScript**: Follow Airbnb JavaScript Style Guide
+- **Comments**: Document complex logic
+- **Tests**: Write unit tests for new features
+- **Commits**: Use conventional commit messages
+
+---
+
+## 📄 Important Notes
+
+### OpenJDK-24 Folder
+⚠️ **Note**: The `ems-frontend/OpenJDK-24/` folder is **NOT needed** for this project and should be removed. It appears to be accidentally placed in the frontend directory. This project only requires:
+
+- **System-wide Java 21+** for backend development
+- **Node.js 18+** for frontend development
+
+The OpenJDK folder in the frontend is unnecessary and takes up space. If you encounter permission issues removing it, you can:
+1. Restart your computer and try again
+2. Use administrator privileges
+3. Or simply ignore it (it won't affect functionality)
+
+---
+
+## 👨‍💻 Author
+
+**Ayush Chaudhary**
+- 📧 **Email**: [ayushiaf.ac@gmail.com](mailto:ayushiaf.ac@gmail.com)
+- 🐙 **GitHub**: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
+- 🔗 **LinkedIn**: [Connect with Ayush](https://www.linkedin.com/in/ayush-chaudhary-652598259/)
+
+---
+
+## 🙏 Acknowledgments
+
+- **Spring Framework Team** for excellent documentation and framework
+- **React Team** for the amazing UI library
+- **MySQL** for reliable database management
+- **Bootstrap Team** for responsive design framework
+- **Vite Team** for fast build tooling
+
+---
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
 <div align="center">
 
-![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.10-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7.1.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+### ⭐ If this project helped you, please give it a star!
 
-**A modern, full-stack Employee Management System built with Spring Boot and React**
+**Happy Coding! 🚀**
 
-> 🚀 **Quick Start**: This project is ready for local development! Follow the [Running the Application](#-running-the-application) section to get started in minutes.
+*Built with ❤️ by Ayush Chaudhary*
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation--setup) • [Quick Start](#-running-the-application) • [API Documentation](#-api-documentation)
+</div>QL 8.0** - Relational database management system
+- **Maven** - Build automation and dependency management
 
-</div>
+**Frontend Technologies:**
+- **React 19.1.1** - JavaScript library for building user interfaces
+- **Vite 7.1.3** - Modern build tool and development server
+- **React Router DOM** - Client-side routing for single-page application
+- **Axios** - HTTP client for API communication
+- **Bootstrap 5.3.7** - CSS framework for responsive design
+- **ESLint** - Code linting and formatting
 
----
+## ✨ Features
 
-## 📋 Table of Contents
+- **CRUD Operations**: Create, Read, Update, Delete employee records
+- **REST API**: RESTful web services with proper HTTP methods
+- **Responsive Design**: Mobile-first Bootstrap interface
+- **Form Validation**: Client and server-side data validation
+- **Database Integration**: MySQL with JPA/Hibernate ORM
+- **Real-time Updates**: Instant UI updates after operations
+- **Search Functionality**: Filter employees by name or email
+- **Professional UI**: Clean, modern interface with dark/light themes
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [System Architecture](#-system-architecture)
-- [Technical Concepts Explained](#-technical-concepts-explained)
-- [Project Structure](#-project-structure)
-- [Prerequisites](#-prerequisites)
-- [Installation & Setup](#-installation--setup)
-- [Running the Application](#-running-the-application)
-- [API Documentation](#-api-documentation)
-- [Database Schema](#-database-schema)
-- [Frontend Structure](#-frontend-structure)
-- [Backend Structure](#-backend-structure)
-- [Development & Testing](#-development--testing)
-- [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
-- [Author](#-author)
-- [Code Documentation](#-code-documentation)
+## 🌐 What is REST API?
 
----
+**REST (Representational State Transfer)** is an architectural style for designing web services. Our EMS uses REST principles:
 
-## 🌟 Overview
+- **Stateless**: Each request contains all needed information
+- **Resource-based**: URLs represent resources (employees)
+- **HTTP Methods**: Standard methods for different operations
+- **JSON Format**: Data exchange in JSON format
 
-The **Employee Management System (EMS)** is a comprehensive full-stack web application designed to streamline employee data management. Built with modern technologies, it provides a clean, intuitive interface for performing CRUD (Create, Read, Update, Delete) operations on employee records.
-
-### ✨ Key Highlights
-
-- 🚀 **Modern Tech Stack**: Spring Boot 3.3.10 + React 19.1.1
-- 🎨 **Professional UI**: Bootstrap-powered responsive design with dark/light themes
-- 🔄 **Real-time Features**: Instant search, theme switching, and data synchronization
-- 🗄️ **Robust Database**: MySQL integration with JPA/Hibernate ORM
-- 🛡️ **Data Validation**: Comprehensive input validation with visual feedback
-- 📱 **Mobile Friendly**: Responsive design that works seamlessly across all devices
-- 💼 **Interview Ready**: Extensively commented code for technical discussions
-- 🔗 **Professional Networking**: Integrated email and LinkedIn contact options
-
----
-
-## 🚀 Features
-
-### Core Functionality
-- ✅ **Employee Registration**: Add new employees with complete details
-- 📖 **Employee Directory**: View all employees with serial number system (S.No)
-- 🔍 **Advanced Search**: Real-time search across name and email fields
-- ✏️ **Profile Updates**: Edit employee information seamlessly
-- 🗑️ **Smart Deletion**: Delete employee records with confirmation dialogs
-- � **Data Validation**: Comprehensive form validation for data integrity
-- 🌓 **Theme Toggle**: Professional dark/light mode switching
-
-### Professional Features
-- 📧 **Direct Contact**: Email integration for immediate communication
-- 🔗 **LinkedIn Integration**: Professional networking connection
-- 📱 **Responsive Design**: Mobile-first approach for all devices
-- 🎨 **Modern UI**: Clean, professional interface with Bootstrap styling
-
-### Technical Features
-- 🔌 **RESTful API**: Clean, well-documented REST endpoints
-- 🔄 **State Management**: Efficient React state handling with hooks
-- 🎯 **Error Handling**: Comprehensive error management throughout
-- 📊 **Database Persistence**: Reliable MySQL data storage with JPA
-- 🌐 **CORS Support**: Cross-origin resource sharing enabled
-- 📝 **Code Documentation**: Extensive comments for interview readiness
-
----
-
-## 🛠️ Tech Stack
-
-### Backend
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Java** | 21 | Core programming language |
-| **Spring Boot** | 3.3.10 | Application framework |
-| **Spring Data JPA** | 3.3.10 | Data persistence layer |
-| **Hibernate** | 6.5.3 | ORM framework |
-| **MySQL** | 8.0+ | Primary database |
-| **Maven** | 3.9+ | Dependency management |
-
-### Frontend
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **React** | 19.1.1 | UI library |
-| **Vite** | 7.1.3 | Build tool & dev server |
-| **React Router DOM** | 7.8.2 | Client-side routing |
-| **Axios** | 1.11.0 | HTTP client |
-| **Bootstrap** | 5.3.7 | CSS framework |
-| **ESLint** | 9.33.0 | Code linting |
-
----
-
-## 🏗️ System Architecture
-
+### REST Endpoints in EMS:
 ```
-┌─────────────────┐    HTTP/REST API    ┌─────────────────┐    JPA/Hibernate    ┌─────────────────┐
-│                 │ ◄──────────────────► │                 │ ◄──────────────────► │                 │
-│  React Frontend │                     │ Spring Boot     │                     │  MySQL Database │
-│  (Port: 3000)   │                     │ Backend         │                     │  (Port: 3306)   │
-│                 │                     │ (Port: 8080)    │                     │                 │
-└─────────────────┘                     └─────────────────┘                     └─────────────────┘
-        │                                       │                                       │
-        ▼                                       ▼                                       ▼
-   Vite Dev Server                         Tomcat Server                          Employee Table
-   React Components                        REST Controllers                       - id (Primary Key)
-   Bootstrap Styling                       Service Layer                          - first_name
-   Axios HTTP Client                       Repository Layer                       - last_name
-                                          JPA Entities                            - email_id
-```
-
----
-
-## 📚 Technical Concepts Explained
-
-### 🌐 What is REST API?
-
-**REST (Representational State Transfer)** is an architectural style for designing networked applications. A REST API is a set of rules and conventions for building web services that allow different software applications to communicate over HTTP.
-
-#### Key Principles of REST:
-- **Stateless**: Each request contains all information needed to process it
-- **Client-Server**: Clear separation between frontend and backend
-- **Cacheable**: Responses can be cached to improve performance
-- **Uniform Interface**: Consistent way to interact with resources
-
-#### HTTP Methods Used in Our EMS:
-| Method | Purpose | Example |
-|--------|---------|---------|
-| `GET` | Retrieve data | Get all employees or specific employee |
-| `POST` | Create new resource | Add new employee |
-| `PUT` | Update existing resource | Modify employee details |
-| `DELETE` | Remove resource | Delete employee record |
-
-#### REST API Endpoints in EMS:
-```
-GET    /api/employees     → Get all employees
-GET    /api/employees/1   → Get employee with ID 1
+GET    /api/employees     → Retrieve all employees
+GET    /api/employees/1   → Retrieve employee with ID 1
 POST   /api/employees     → Create new employee
 PUT    /api/employees/1   → Update employee with ID 1
 DELETE /api/employees/1   → Delete employee with ID 1
 ```
 
-### 🏗️ What is Spring Boot?
+## 🏗️ What is Spring Boot?
 
-**Spring Boot** is a Java framework that simplifies the development of production-ready applications. It provides:
+**Spring Boot** is a Java framework that simplifies application development:
 
-- **Auto-Configuration**: Automatically configures your application based on dependencies
-- **Embedded Server**: Built-in Tomcat server (no need for external deployment)
+- **Auto-Configuration**: Automatically configures components based on classpath
+- **Embedded Server**: Built-in Tomcat server (no external deployment needed)
 - **Starter Dependencies**: Pre-configured dependency bundles
-- **Production Features**: Health checks, metrics, externalized configuration
+- **Production Ready**: Built-in monitoring, health checks, and metrics
 
-#### Key Spring Boot Components in EMS:
-- **@RestController**: Marks a class as REST API controller
-- **@Service**: Business logic layer component
-- **@Repository**: Data access layer component
-- **@Entity**: JPA entity representing database table
+### Key Spring Boot Components:
+- **@RestController**: Handles HTTP requests and responses
+- **@Service**: Contains business logic
+- **@Repository**: Data access layer
+- **@Entity**: JPA entities representing database tables
 
-### 🗄️ What is JPA/Hibernate?
+## 🗄️ Database & JPA
 
-**JPA (Java Persistence API)** is a specification for managing relational data in Java applications.
-**Hibernate** is the most popular JPA implementation.
-
-#### Benefits:
-- **Object-Relational Mapping (ORM)**: Maps Java objects to database tables
-- **Database Independence**: Write once, run on any database
-- **Automatic SQL Generation**: No need to write SQL queries manually
+**JPA (Java Persistence API)** with **Hibernate** provides:
+- **Object-Relational Mapping**: Java objects ↔ Database tables
+- **Automatic Query Generation**: No manual SQL required
+- **Database Independence**: Works with multiple databases
 - **Lazy Loading**: Efficient data loading strategies
 
-#### JPA Annotations in EMS:
+### Employee Entity Structure:
 ```java
-@Entity                    // Marks class as database entity
-@Id                       // Primary key field
-@GeneratedValue           // Auto-generated primary key
-@Column                   // Maps field to database column
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "first_name")
+    private String firstName;
+    
+    @Column(name = "last_name") 
+    private String lastName;
+    
+    @Column(name = "email_id")
+    private String email;
+}
 ```
-
-### ⚛️ What is React?
-
-**React** is a JavaScript library for building user interfaces, developed by Facebook.
-
-#### Key Concepts:
-- **Components**: Reusable UI building blocks
-- **JSX**: JavaScript syntax extension for writing HTML-like code
-- **State**: Component data that can change over time
-- **Props**: Data passed from parent to child components
-- **Hooks**: Functions that let you use state and lifecycle features
-
-#### React Features in EMS:
-- **Functional Components**: Modern React component style
-- **useState Hook**: Manages component state
-- **useEffect Hook**: Handles side effects (API calls)
-- **React Router**: Client-side navigation
-
-### 🎨 What is Bootstrap?
-
-**Bootstrap** is a popular CSS framework for building responsive, mobile-first websites.
-
-#### Features Used in EMS:
-- **Grid System**: Responsive layout structure
-- **Components**: Pre-built UI components (buttons, forms, tables)
-- **Utilities**: Helper classes for spacing, colors, typography
-- **Responsive Design**: Mobile-first approach
-
-### 🔧 What is Maven?
-
-**Maven** is a build automation and project management tool for Java projects.
-
-#### Key Features:
-- **Dependency Management**: Automatically downloads and manages libraries
-- **Build Lifecycle**: Standardized build process
-- **Project Structure**: Standard directory layout
-- **Plugins**: Extensible build functionality
-
-#### Maven Commands Used:
-```bash
-./mvnw clean compile    # Clean and compile project
-./mvnw spring-boot:run  # Run Spring Boot application
-./mvnw package         # Create JAR file
-```
-
-### 🌐 What is CORS?
-
-**CORS (Cross-Origin Resource Sharing)** is a security feature that allows controlled access to resources from different domains.
-
-#### Why Needed:
-- **Same-Origin Policy**: Browsers block requests between different origins
-- **API Access**: Frontend (port 3000) needs to access backend (port 8080)
-- **Security**: Prevents malicious websites from accessing your API
-
-#### CORS Configuration in EMS:
-```java
-@CrossOrigin(origins = "http://localhost:3000")
-```
-
-### 📦 What is Vite?
-
-**Vite** is a modern build tool for JavaScript projects, focusing on speed and developer experience.
-
-#### Advantages:
-- **Fast Development**: Hot module replacement (HMR)
-- **Modern JavaScript**: ES modules support
-- **Optimized Builds**: Efficient production bundles
-- **Plugin Ecosystem**: Rich plugin system
-
-### 🔄 What is CRUD?
-
-**CRUD** stands for the four basic operations that can be performed on data:
-
-- **Create**: Add new records (POST request)
-- **Read**: Retrieve existing records (GET request)  
-- **Update**: Modify existing records (PUT request)
-- **Delete**: Remove records (DELETE request)
-
-#### CRUD Operations in EMS:
-- **Create**: Add new employee
-- **Read**: View employee list and individual details
-- **Update**: Edit employee information
-- **Delete**: Remove employee from system
-
-### 🏛️ What is MVC Architecture?
-
-**MVC (Model-View-Controller)** is a design pattern that separates application logic:
-
-- **Model**: Data and business logic (Entity, Repository, Service)
-- **View**: User interface (React components)
-- **Controller**: Handles requests and responses (REST Controller)
-
-#### MVC in EMS:
-- **Model**: Employee entity, EmployeeService, EmployeeRepository
-- **View**: React components (ListEmployeeComponent, EmployeeComponent)
-- **Controller**: EmployeeController with REST endpoints
 
 ---
 
 ## 📋 Prerequisites
 
-Before running this application, ensure you have the following installed:
+Before running this application, ensure you have:
 
-### Required Software
-- ☕ **Java Development Kit (JDK) 21 or higher**
-- 🗄️ **MySQL Server 8.0 or higher**
-- 🌐 **Node.js 18.0 or higher**
-- 📦 **npm 9.0 or higher**
-- 🔧 **Git** (for cloning the repository)
+- **Java Development Kit (JDK) 21** or higher
+- **MySQL Server 8.0** or higher  
+- **Node.js 18.0** or higher
+- **npm 9.0** or higher
+- **Git** (for cloning the repository)
 
-### Optional Tools
-- 🛠️ **MySQL Workbench** (for database management)
-- 🔍 **Postman** (for API testing)
-- 💻 **VS Code** or **IntelliJ IDEA** (recommended IDEs)
-
----
-
-## � Project Structure
-
-This project has been cleaned and optimized for professional development and interviews:
-
-```
-📁 Employee Management System/
-├── 📁 .vscode/                 # VS Code settings (minimal, useful)
-│   └── 📄 settings.json        # Java & build configuration
-├── 📁 ems-backend/            # Spring Boot backend
-│   ├── 📁 src/main/java/      # Java source code with extensive comments
-│   │   └── 📁 net/javaguides/ems/
-│   │       ├── 📄 EmsBackendApplication.java
-│   │       ├── 📁 controller/  # REST API endpoints
-│   │       ├── 📁 service/     # Business logic layer
-│   │       ├── 📁 entity/      # JPA entities
-│   │       ├── 📁 repository/  # Data access layer
-│   │       ├── 📁 dto/         # Data transfer objects
-│   │       ├── 📁 mapper/      # Entity-DTO mapping
-│   │       └── 📁 exception/   # Custom exceptions
-│   ├── 📁 src/main/resources/ # Application properties
-│   ├── 📁 target/             # Compiled classes (auto-generated)
-│   ├── 📄 pom.xml             # Maven configuration
-│   ├── 📄 mvnw & mvnw.cmd     # Maven wrapper
-│   └── 📄 .gitignore          # Git ignore rules
-├── 📁 ems-frontend/           # React frontend
-│   ├── 📁 src/                # React source code with comprehensive comments
-│   │   ├── 📄 App.jsx         # Main application component
-│   │   ├── 📄 App.css         # Application styles with dark/light themes
-│   │   ├── 📁 components/     # Reusable React components
-│   │   │   ├── 📄 HeaderComponent.jsx      # Navigation with contact links
-│   │   │   ├── 📄 ListEmployeeComponent.jsx # Employee list with search & S.No
-│   │   │   ├── 📄 EmployeeComponent.jsx     # Add/Edit employee form
-│   │   │   └── 📄 FooterComponent.jsx       # Application footer
-│   │   └── 📁 services/       # API communication layer
-│   │       └── 📄 EmployeeService.js        # Axios-based API calls
-│   ├── 📁 public/             # Static assets
-│   │   └── 📄 vite.svg        # Vite logo
-│   ├── 📁 node_modules/       # Dependencies (auto-generated)
-│   ├── 📄 package.json        # NPM configuration
-│   ├── 📄 vite.config.js      # Vite build configuration
-│   ├── 📄 .env.development    # Development environment variables
-│   └── 📄 .gitignore          # Git ignore rules
-└── 📄 README.md               # This comprehensive documentation
-```
-
-### 🧹 **Recently Cleaned Up**
-
-This project has been professionally cleaned to remove:
-- ❌ Deployment configuration files (Docker, Vercel, Railway, etc.)
-- ❌ Duplicate documentation and test files
-- ❌ Alternative backend implementations
-- ❌ Mock data files
-- ❌ Failed deployment artifacts
-
-**Result**: Clean, focused codebase perfect for interviews and portfolio presentation.
-
----
-
-## �🔧 Installation & Setup
+## 🔧 Installation & Setup
 
 ### 1. Clone the Repository
 ```bash
@@ -376,21 +392,20 @@ cd Crud_Application
 
 ### 2. Database Setup
 
-#### Create Database
+**Create MySQL Database:**
 ```sql
--- Connect to MySQL as root user
+-- Connect to MySQL
 mysql -u root -p
 
 -- Create database
 CREATE DATABASE ems;
 
--- Use the database
+-- Use the database (optional - Spring Boot will auto-create tables)
 USE ems;
-
--- The application will automatically create the employee table
 ```
 
-#### Configure Database Connection
+**Configure Database Connection:**
+
 Navigate to `ems-backend/src/main/resources/application.properties` and update:
 ```properties
 # MySQL Database Configuration
@@ -404,11 +419,11 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.show-sql=true
 
+# Server Configuration
 server.port=8080
 ```
 
 ### 3. Backend Setup (Spring Boot)
-
 ```bash
 # Navigate to backend directory
 cd ems-backend
@@ -416,48 +431,82 @@ cd ems-backend
 # Clean and compile the project
 ./mvnw clean compile
 
-# Run tests (optional)
-./mvnw test
-
-# Install dependencies
+# Install dependencies (optional)
 ./mvnw dependency:resolve
 ```
 
 ### 4. Frontend Setup (React)
-
 ```bash
 # Navigate to frontend directory
-cd ../ems-frontend
+cd ems-frontend
 
 # Install dependencies
 npm install
 
 # Verify installation
-npm list
+npm list --depth=0
+```
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AyushChaudhary2003/Crud_Application.git
+cd Crud_Application
+```
+
+### 2. Database Setup
+```sql
+-- Create database
+CREATE DATABASE ems;
+```
+
+Update `ems-backend/src/main/resources/application.properties`:
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/ems
+spring.datasource.username=root
+spring.datasource.password=YOUR_MYSQL_PASSWORD
+```
+
+### 3. Backend Setup
+```bash
+cd ems-backend
+./mvnw clean compile
+```
+
+### 4. Frontend Setup
+```bash
+cd ems-frontend
+npm install
 ```
 
 ---
 
 ## 🚀 Running the Application
 
-### 🔥 **Quick Start Commands**
+### Method 1: Quick Start (Recommended)
 
-#### **Step 1: Start Backend Server (Terminal 1)**
+**Step 1: Start Backend Server (Terminal 1)**
 ```powershell
 # Navigate to project root
-cd "C:\Users\ayush\OneDrive\Desktop\CRUD (Project1)\full-stack"
+cd "C:\path\to\your\project\full-stack"
 
 # Go to backend directory
 cd ems-backend
 
-# Start Spring Boot application
+# Start Spring Boot application (Windows)
 .\mvnw.cmd spring-boot:run
+
+# For Linux/Mac
+./mvnw spring-boot:run
 ```
 
-#### **Step 2: Start Frontend Server (Terminal 2)**
+**Step 2: Start Frontend Server (Terminal 2)**
 ```powershell
-# Open new terminal and navigate to project root
-cd "C:\Users\ayush\OneDrive\Desktop\CRUD (Project1)\full-stack"
+# Open new terminal, navigate to project root
+cd "C:\path\to\your\project\full-stack"
 
 # Go to frontend directory
 cd ems-frontend
@@ -466,118 +515,63 @@ cd ems-frontend
 npm run dev
 ```
 
-### 📊 **Expected Output**
-
-#### Backend (Spring Boot) - Terminal 1:
-```
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::               (v3.3.10)
-
-2025-XX-XX 10:XX:XX.XXX  INFO --- [main] n.j.ems.EmsBackendApplication
-Started EmsBackendApplication in 3.245 seconds (JVM running for 3.567)
-Tomcat started on port(s): 8080 (http) with context path ''
-```
-
-#### Frontend (React + Vite) - Terminal 2:
-```
-VITE v7.1.3  ready in 324 ms
-
-➜  Local:   http://localhost:3000/
-➜  Network: use --host to expose
-➜  press h to show help
-
-ready in 324ms.
-```
-
-### 🌍 **Access Points**
-
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Frontend** | http://localhost:3000 | React application interface |
-| **Backend API** | http://localhost:8080 | Spring Boot REST API |
-| **Employee API** | http://localhost:8080/api/employees | Employee CRUD endpoints |
-
-### ✅ **Verification Steps**
-
-#### 1. Test Backend API:
-```powershell
-# Test API endpoint
-Invoke-WebRequest -Uri "http://localhost:8080/api/employees" -Method GET
-```
-
-#### 2. Test Frontend:
-- Open browser and navigate to http://localhost:3000
-- You should see the Employee Management System interface
-
-### 🛑 **Stopping the Application**
-
-#### Stop Backend:
-- In Terminal 1: Press `Ctrl + C`
-
-#### Stop Frontend:
-- In Terminal 2: Press `Ctrl + C`
-
-### 🔄 **Alternative Running Methods**
-
-#### Method 1: Using Maven Wrapper (Current)
-```powershell
-# Backend
+### Method 2: Build and Run JAR (Production)
+```bash
+# Build backend JAR
 cd ems-backend
-.\mvnw.cmd spring-boot:run
-
-# Frontend  
-cd ems-frontend
-npm run dev
-```
-
-#### Method 2: Using Java JAR (Production)
-```powershell
-# Build JAR file
-cd ems-backend
-.\mvnw.cmd clean package
+./mvnw clean package
 
 # Run JAR file
-java -jar target\ems-backend-0.0.1-SNAPSHOT.jar
+java -jar target/ems-backend-0.0.1-SNAPSHOT.jar
+
+# In another terminal, start frontend
+cd ems-frontend
+npm run build
+npm run preview
 ```
 
-#### Method 3: IDE Integration
-- **IntelliJ IDEA**: Right-click `EmsBackendApplication.java` → Run
-- **VS Code**: Open integrated terminal and run commands above
-
----
-
-## 🌐 Access the Application
+### 🌍 Access the Application
 
 Once both servers are running:
 
-- **Frontend (React)**: http://localhost:3000
-- **Backend (Spring Boot)**: http://localhost:8080
-- **API Base URL**: http://localhost:8080/api
+| Service | URL | Description |
+|---------|-----|-------------|
+| **Frontend (React)** | http://localhost:3000 | User interface |
+| **Backend (Spring Boot)** | http://localhost:8080 | REST API server |
+| **API Endpoints** | http://localhost:8080/api/employees | Employee CRUD API |
 
-### Health Check
-Test if the backend is running:
-```bash
+### ✅ Verify Installation
+
+**Test Backend API:**
+```powershell
+# Using PowerShell
+Invoke-WebRequest -Uri "http://localhost:8080/api/employees" -Method GET
+
+# Using curl (if available)
 curl http://localhost:8080/api/employees
 ```
 
+**Test Frontend:**
+- Open browser → http://localhost:3000
+- You should see the Employee Management System interface
+
+### 🛑 Stop the Application
+- **Backend**: Press `Ctrl + C` in backend terminal
+- **Frontend**: Press `Ctrl + C` in frontend terminal
+
 ---
 
-## 📡 API Documentation
+## 📡 REST API Documentation
 
 ### Base URL
 ```
 http://localhost:8080/api
 ```
 
-### Endpoints
+### Employee API Endpoints
 
-| Method | Endpoint | Description | Request Body | Response |
-|--------|----------|-------------|--------------|----------|
+| HTTP Method | Endpoint | Description | Request Body | Response |
+|-------------|----------|-------------|--------------|----------|
 | `GET` | `/employees` | Get all employees | None | Array of employees |
 | `GET` | `/employees/{id}` | Get employee by ID | None | Employee object |
 | `POST` | `/employees` | Create new employee | Employee JSON | Created employee |
@@ -589,14 +583,14 @@ http://localhost:8080/api
 {
   "id": 1,
   "firstName": "John",
-  "lastName": "Doe",
+  "lastName": "Doe", 
   "email": "john.doe@example.com"
 }
 ```
 
 ### Sample API Calls
 
-#### Create Employee
+**Create Employee (POST):**
 ```bash
 curl -X POST http://localhost:8080/api/employees \
   -H "Content-Type: application/json" \
@@ -607,18 +601,23 @@ curl -X POST http://localhost:8080/api/employees \
   }'
 ```
 
-#### Update Employee
+**Get All Employees (GET):**
+```bash
+curl -X GET http://localhost:8080/api/employees
+```
+
+**Update Employee (PUT):**
 ```bash
 curl -X PUT http://localhost:8080/api/employees/1 \
   -H "Content-Type: application/json" \
   -d '{
-    "firstName": "Jane",
+    "firstName": "Jane", 
     "lastName": "Smith",
     "email": "jane.smith@example.com"
   }'
 ```
 
-#### Delete Employee
+**Delete Employee (DELETE):**
 ```bash
 curl -X DELETE http://localhost:8080/api/employees/1
 ```
@@ -627,70 +626,132 @@ curl -X DELETE http://localhost:8080/api/employees/1
 
 ## 🗄️ Database Schema
 
-### Employee Table
+### Employee Table Structure
 ```sql
 CREATE TABLE employee (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
-    email_id VARCHAR(255) NOT NULL UNIQUE
+    email_id VARCHAR(255) NOT NULL UNIQUE,
+    
+    CONSTRAINT UK_email UNIQUE (email_id)
 );
 ```
 
 ### Sample Data
 ```sql
 INSERT INTO employee (first_name, last_name, email_id) VALUES
-('Ayush', 'Chaudhary', 'ayush@example.com'),
-('Piyush', 'Chaudhary', 'piyush@example.com'),
-('Ankit', 'Kamat', 'ankit@example.com');
+('Ayush', 'Chaudhary', 'ayush@company.com'),
+('Priya', 'Sharma', 'priya@company.com'),
+('Rahul', 'Kumar', 'rahul@company.com');
 ```
 
 ---
 
-## 🎨 Frontend Structure
+## 🎨 Architecture Overview
 
+### System Architecture
 ```
-ems-frontend/
-├── public/
-│   └── vite.svg
-├── src/
-│   ├── components/
-│   │   ├── EmployeeComponent.jsx      # Add/Edit employee form
-│   │   ├── ListEmployeeComponent.jsx  # Employee list & table
-│   │   ├── HeaderComponent.jsx        # Navigation header
-│   │   └── FooterComponent.jsx        # Footer component
-│   ├── services/
-│   │   └── EmployeeService.js         # API service layer
-│   ├── App.jsx                        # Main app component
-│   ├── App.css                        # App styles
-│   ├── index.css                      # Global styles
-│   └── main.jsx                       # App entry point
-├── package.json
-├── vite.config.js
-└── eslint.config.js
+┌─────────────────┐    HTTP/REST    ┌─────────────────┐    JPA/SQL    ┌─────────────────┐
+│                 │ ◄─────────────► │                 │ ◄───────────► │                 │
+│  React Frontend │                │ Spring Boot     │               │  MySQL Database │
+│  (Port: 3000)   │                │ Backend         │               │  (Port: 3306)   │
+│                 │                │ (Port: 8080)    │               │                 │
+└─────────────────┘                └─────────────────┘               └─────────────────┘
+        │                                    │                                 │
+        ▼                                    ▼                                 ▼
+   Vite Dev Server                    Embedded Tomcat                   Employee Table
+   React Components                   REST Controllers                  Auto-generated
+   Bootstrap UI                       Service Layer                     by Hibernate
+   Axios HTTP Client                  JPA Repository
 ```
 
-### Key Components
+### Data Flow Architecture
+```
+Frontend (React)                 Backend (Spring Boot)              Database (MySQL)
+─────────────────                ─────────────────────              ────────────────
 
-#### `ListEmployeeComponent.jsx`
-- Displays all employees in a responsive table
-- Provides edit and delete functionality
-- Handles navigation to add new employees
+User Interaction                                                     
+      │                                                              
+      ▼                                                              
+React Component                                                      
+      │                                                              
+      ▼                                                              
+Axios HTTP Request ────────────► @RestController                    
+                                        │                            
+                                        ▼                            
+                                 @Service Layer                      
+                                        │                            
+                                        ▼                            
+                                 @Repository ──────────────────────► Employee Table
+                                        │                                    │
+                                        ▼                                    │
+                                 JPA Entity ◄────────────────────────────────┘
+                                        │                            
+                                        ▼                            
+JSON Response ◄──────────────── HTTP Response                       
+      │                                                              
+      ▼                                                              
+State Update                                                         
+      │                                                              
+      ▼                                                              
+UI Re-render                                                         
+```
 
-#### `EmployeeComponent.jsx`
-- Handles both add and edit operations
-- Form validation and error handling
-- Responsive form design with Bootstrap
+### Layer-wise Architecture
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PRESENTATION LAYER                       │
+│  React Components │ Bootstrap UI │ React Router │ Axios     │
+└─────────────────────────────────────────────────────────────┘
+                                │
+                                ▼ HTTP/REST API
+┌─────────────────────────────────────────────────────────────┐
+│                     CONTROLLER LAYER                        │
+│  @RestController │ @RequestMapping │ @CrossOrigin           │
+└─────────────────────────────────────────────────────────────┘
+                                │
+                                ▼ Service Calls
+┌─────────────────────────────────────────────────────────────┐
+│                      SERVICE LAYER                          │
+│  @Service │ Business Logic │ Data Validation │ DTO Mapping  │
+└─────────────────────────────────────────────────────────────┘
+                                │
+                                ▼ Repository Calls
+┌─────────────────────────────────────────────────────────────┐
+│                     REPOSITORY LAYER                        │
+│  @Repository │ JPA Methods │ Custom Queries │ Pagination    │
+└─────────────────────────────────────────────────────────────┘
+                                │
+                                ▼ JPA/Hibernate
+┌─────────────────────────────────────────────────────────────┐
+│                       DATA LAYER                            │
+│  @Entity │ MySQL Database │ Employee Table │ Relationships  │
+└─────────────────────────────────────────────────────────────┘
+```
 
-#### `EmployeeService.js`
-- Centralized API calls using Axios
-- Error handling and response processing
-- Base URL configuration
+### MVC Pattern Implementation
+
+**Model (Data Layer):**
+- `Employee.java` - JPA Entity
+- `EmployeeRepository.java` - Data Access Layer
+- `EmployeeService.java` - Business Logic Layer
+
+**View (Presentation Layer):**
+- React Components (JSX)
+- Bootstrap CSS Framework
+- Responsive Web Interface
+
+**Controller (API Layer):**
+- `EmployeeController.java` - REST API Endpoints
+- HTTP Request/Response handling
+- JSON data serialization
 
 ---
 
-## 🏗️ Backend Structure
+## 📁 Project Structure
 
+### Backend Structure (ems-backend)
 ```
 ems-backend/
 ├── src/main/java/net/javaguides/ems/
@@ -699,204 +760,50 @@ ems-backend/
 │   ├── service/
 │   │   ├── EmployeeService.java       # Service interface
 │   │   └── impl/
-│   │       └── EmployeeServiceImpl.java # Service implementation
+│   │       └── EmployeeServiceImpl.java # Business logic
 │   ├── repository/
-│   │   └── EmployeeRepository.java    # JPA repository
+│   │   └── EmployeeRepository.java    # JPA data access
 │   ├── entity/
-│   │   └── Employee.java              # JPA entity
+│   │   └── Employee.java              # JPA entity/model
 │   ├── dto/
 │   │   └── EmployeeDto.java           # Data transfer object
 │   ├── mapper/
-│   │   └── EmployeeMapper.java        # Entity-DTO mapper
-│   ├── exception/
-│   │   └── ResourceNotFoundException.java # Custom exception
-│   └── EmsBackendApplication.java     # Main application class
-└── src/main/resources/
-    └── application.properties         # Configuration file
+│   │   └── EmployeeMapper.java        # Entity-DTO conversion
+│   └── EmsBackendApplication.java     # Main Spring Boot class
+├── src/main/resources/
+│   └── application.properties         # Database configuration
+├── src/test/java/                     # Unit tests
+├── pom.xml                            # Maven dependencies
+└── mvnw, mvnw.cmd                     # Maven wrapper scripts
 ```
 
-### Architecture Pattern
-- **Controller Layer**: Handles HTTP requests and responses
-- **Service Layer**: Contains business logic
-- **Repository Layer**: Data access abstraction
-- **Entity Layer**: JPA entities for database mapping
-- **DTO Layer**: Data transfer objects for API communication
+### Frontend Structure (ems-frontend)
+```
+ems-frontend/
+├── src/
+│   ├── components/
+│   │   ├── EmployeeComponent.jsx      # Add/Edit employee form
+│   │   ├── ListEmployeeComponent.jsx  # Employee list table
+│   │   ├── HeaderComponent.jsx        # Navigation header
+│   │   └── FooterComponent.jsx        # Footer
+│   ├── services/
+│   │   └── EmployeeService.js         # Axios API calls
+│   ├── App.jsx                        # Main app component
+│   ├── App.css                        # Application styles
+│   ├── index.css                      # Global styles
+│   └── main.jsx                       # React entry point
+├── public/
+│   ├── index.html                     # HTML template
+│   └── vite.svg                       # Favicon
+├── package.json                       # NPM dependencies
+├── vite.config.js                     # Vite build configuration
+└── eslint.config.js                   # Code linting rules
+```
 
 ---
 
-## 🛠️ Development & Testing
-
-### Backend Testing
-```bash
-cd ems-backend
-./mvnw test
-./mvnw spring-boot:run -Dspring-boot.run.profiles=test
-```
-
-### Frontend Testing
-```bash
-cd ems-frontend
-npm run lint
-npm run build
-```
-
-### Manual Testing Checklist
-- [ ] Create new employee
-- [ ] View employee list
-- [ ] Edit existing employee
-- [ ] Delete employee
-- [ ] Form validation
-- [ ] API error handling
-- [ ] Responsive design
-
----
-
-## 🚨 Troubleshooting
-
-### Common Issues
-
-#### Backend Won't Start
-
-**Windows/PowerShell Commands:**
-```powershell
-# Check Java version
-java -version
-
-# Check if port 8080 is in use
-netstat -an | findstr 8080
-
-# Stop any Java processes if needed
-Get-Process | Where-Object {$_.ProcessName -eq "java"} | Stop-Process -Force
-
-# Check MySQL connection
-mysql -u root -p -e "SHOW DATABASES;"
-```
-
-**Common Solutions:**
-- Ensure MySQL is running
-- Verify `application.properties` database credentials
-- Check if port 8080 is already in use
-- Remove any duplicate controller files (e.g., VercelHandler.java)
-
-#### Frontend Build Errors
-
-**Windows/PowerShell Commands:**
-```powershell
-# Clear node modules and reinstall
-Remove-Item -Recurse -Force node_modules, package-lock.json -ErrorAction SilentlyContinue
-npm install
-
-# Check Node.js version
-node --version
-npm --version
-
-# Kill any Node processes if needed
-Get-Process | Where-Object {$_.ProcessName -eq "node"} | Stop-Process -Force
-```
-
-**Common Solutions:**
-- Ensure Node.js version 18+ is installed
-- Clear npm cache: `npm cache clean --force`
-- Delete node_modules and reinstall dependencies
-
-#### Database Connection Issues
-1. Verify MySQL is running
-2. Check username/password in `application.properties`
-3. Ensure database `ems` exists
-4. Verify MySQL port (default: 3306)
-
-#### Mapping Conflicts (Spring Boot)
-**Error**: `Ambiguous mapping. Cannot map 'employeeController' method`
-
-**Solution**: Remove duplicate controller files:
-```powershell
-# Remove any duplicate handlers
-Remove-Item "src\main\java\net\javaguides\ems\api\VercelHandler.java" -Force -ErrorAction SilentlyContinue
-```
-
-This error occurs when multiple controllers have the same REST endpoint mappings.
-
-#### CORS Errors
-- Backend includes `@CrossOrigin` annotations
-- Check browser developer console for specific errors
-- Verify frontend is running on port 3000
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add some amazing feature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
-
-### Development Guidelines
-- Follow Java naming conventions
-- Use meaningful commit messages
-- Add comments for complex logic
-- Test your changes thoroughly
-- Update documentation as needed
-
----
-
-## ‍💻 Author
+## Author
 
 **Ayush Chaudhary**
-- 🔗 **LinkedIn**: [Connect with Ayush](https://www.linkedin.com/in/ayush-chaudhary-652598259/)
-- 📧 **Email**: [ayushiaf.ac@gmail.com](mailto:ayushiaf.ac@gmail.com)
-- 🐙 **GitHub**: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
-- 💼 **Portfolio**: This Employee Management System showcases full-stack development skills
-
----
-
-## 📝 Code Documentation
-
-This project includes comprehensive comments throughout the codebase for:
-- **Interview Preparation**: Detailed explanations of technical concepts
-- **Learning Reference**: Clear documentation of design patterns and best practices
-- **Maintenance**: Easy understanding for future enhancements
-- **Code Review**: Professional-level commenting standards
-
-### Backend Documentation
-- **Controllers**: REST API endpoint documentation with HTTP methods
-- **Services**: Business logic explanation with transaction handling
-- **Entities**: JPA annotations and database mapping details
-- **Repositories**: Data access patterns and query explanations
-
-### Frontend Documentation
-- **Components**: React hooks usage and state management patterns
-- **Services**: API integration and error handling strategies
-- **Routing**: SPA navigation and URL parameter handling
-- **Styling**: Bootstrap integration and responsive design principles
-
----
-
-## 🙏 Acknowledgments
-
-- Spring Boot community for excellent documentation
-- React team for the amazing framework
-- Bootstrap for responsive design components
-- MySQL for reliable database solutions
-- Vite for lightning-fast development experience
-
----
-
-<div align="center">
-
-### ⭐ If you found this project helpful, please give it a star!
-
-**Happy Coding! 🚀**
-
-</div>
+-  Email: ayushiaf.ac@gmail.com
+- 🐙 GitHub: [@AyushChaudhary2003](https://github.com/AyushChaudhary2003)
