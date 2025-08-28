@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// Use environment variable or fallback to localhost for development
-const REST_API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/employees';
+// Hardcoded API URL for production deployment
+const REST_API_BASE_URL = 'https://crud-project-qkf2douv8-ayushs-projects-31542b2b.vercel.app/api/employees';
 
 console.log('Using API URL:', REST_API_BASE_URL);
 
