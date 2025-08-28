@@ -4,7 +4,7 @@ A comprehensive CRUD (Create, Read, Update, Delete) application for managing emp
 
 ## 🚀 Live Demo
 
-- **Frontend**: [Deploy Next - Ready for Vercel]
+- **Frontend**: [https://crud-frontend-gold.vercel.app](https://crud-frontend-gold.vercel.app) ✅ **DEPLOYED**
 - **Node.js Backend API**: [https://crud-project-qkf2douv8-ayushs-projects-31542b2b.vercel.app](https://crud-project-qkf2douv8-ayushs-projects-31542b2b.vercel.app) ✅ **DEPLOYED**
 - **Java Spring Boot Backend**: Available for local development and enterprise deployment
 
@@ -126,7 +126,8 @@ Both backends implement identical REST API:
 
 ### 🔄 React Frontend (Next)
 - **Platform**: Vercel
-- **Status**: 🟡 **Ready for Deployment**
+- **Status**: ✅ **DEPLOYED**
+- **URL**: https://crud-frontend-gold.vercel.app
 - **Build**: ✅ Production build successful
 - **API**: Configured for deployed Node.js backend
 
