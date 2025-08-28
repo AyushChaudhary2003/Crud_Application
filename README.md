@@ -22,6 +22,7 @@
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [System Architecture](#-system-architecture)
+- [Technical Concepts Explained](#-technical-concepts-explained)
 - [Prerequisites](#-prerequisites)
 - [Installation & Setup](#-installation--setup)
 - [Running the Application](#-running-the-application)
@@ -108,6 +109,167 @@ The **Employee Management System (EMS)** is a comprehensive full-stack web appli
    Axios HTTP Client                       Repository Layer                       - last_name
                                           JPA Entities                            - email_id
 ```
+
+---
+
+## 📚 Technical Concepts Explained
+
+### 🌐 What is REST API?
+
+**REST (Representational State Transfer)** is an architectural style for designing networked applications. A REST API is a set of rules and conventions for building web services that allow different software applications to communicate over HTTP.
+
+#### Key Principles of REST:
+- **Stateless**: Each request contains all information needed to process it
+- **Client-Server**: Clear separation between frontend and backend
+- **Cacheable**: Responses can be cached to improve performance
+- **Uniform Interface**: Consistent way to interact with resources
+
+#### HTTP Methods Used in Our EMS:
+| Method | Purpose | Example |
+|--------|---------|---------|
+| `GET` | Retrieve data | Get all employees or specific employee |
+| `POST` | Create new resource | Add new employee |
+| `PUT` | Update existing resource | Modify employee details |
+| `DELETE` | Remove resource | Delete employee record |
+
+#### REST API Endpoints in EMS:
+```
+GET    /api/employees     → Get all employees
+GET    /api/employees/1   → Get employee with ID 1
+POST   /api/employees     → Create new employee
+PUT    /api/employees/1   → Update employee with ID 1
+DELETE /api/employees/1   → Delete employee with ID 1
+```
+
+### 🏗️ What is Spring Boot?
+
+**Spring Boot** is a Java framework that simplifies the development of production-ready applications. It provides:
+
+- **Auto-Configuration**: Automatically configures your application based on dependencies
+- **Embedded Server**: Built-in Tomcat server (no need for external deployment)
+- **Starter Dependencies**: Pre-configured dependency bundles
+- **Production Features**: Health checks, metrics, externalized configuration
+
+#### Key Spring Boot Components in EMS:
+- **@RestController**: Marks a class as REST API controller
+- **@Service**: Business logic layer component
+- **@Repository**: Data access layer component
+- **@Entity**: JPA entity representing database table
+
+### 🗄️ What is JPA/Hibernate?
+
+**JPA (Java Persistence API)** is a specification for managing relational data in Java applications.
+**Hibernate** is the most popular JPA implementation.
+
+#### Benefits:
+- **Object-Relational Mapping (ORM)**: Maps Java objects to database tables
+- **Database Independence**: Write once, run on any database
+- **Automatic SQL Generation**: No need to write SQL queries manually
+- **Lazy Loading**: Efficient data loading strategies
+
+#### JPA Annotations in EMS:
+```java
+@Entity                    // Marks class as database entity
+@Id                       // Primary key field
+@GeneratedValue           // Auto-generated primary key
+@Column                   // Maps field to database column
+```
+
+### ⚛️ What is React?
+
+**React** is a JavaScript library for building user interfaces, developed by Facebook.
+
+#### Key Concepts:
+- **Components**: Reusable UI building blocks
+- **JSX**: JavaScript syntax extension for writing HTML-like code
+- **State**: Component data that can change over time
+- **Props**: Data passed from parent to child components
+- **Hooks**: Functions that let you use state and lifecycle features
+
+#### React Features in EMS:
+- **Functional Components**: Modern React component style
+- **useState Hook**: Manages component state
+- **useEffect Hook**: Handles side effects (API calls)
+- **React Router**: Client-side navigation
+
+### 🎨 What is Bootstrap?
+
+**Bootstrap** is a popular CSS framework for building responsive, mobile-first websites.
+
+#### Features Used in EMS:
+- **Grid System**: Responsive layout structure
+- **Components**: Pre-built UI components (buttons, forms, tables)
+- **Utilities**: Helper classes for spacing, colors, typography
+- **Responsive Design**: Mobile-first approach
+
+### 🔧 What is Maven?
+
+**Maven** is a build automation and project management tool for Java projects.
+
+#### Key Features:
+- **Dependency Management**: Automatically downloads and manages libraries
+- **Build Lifecycle**: Standardized build process
+- **Project Structure**: Standard directory layout
+- **Plugins**: Extensible build functionality
+
+#### Maven Commands Used:
+```bash
+./mvnw clean compile    # Clean and compile project
+./mvnw spring-boot:run  # Run Spring Boot application
+./mvnw package         # Create JAR file
+```
+
+### 🌐 What is CORS?
+
+**CORS (Cross-Origin Resource Sharing)** is a security feature that allows controlled access to resources from different domains.
+
+#### Why Needed:
+- **Same-Origin Policy**: Browsers block requests between different origins
+- **API Access**: Frontend (port 3000) needs to access backend (port 8080)
+- **Security**: Prevents malicious websites from accessing your API
+
+#### CORS Configuration in EMS:
+```java
+@CrossOrigin(origins = "http://localhost:3000")
+```
+
+### 📦 What is Vite?
+
+**Vite** is a modern build tool for JavaScript projects, focusing on speed and developer experience.
+
+#### Advantages:
+- **Fast Development**: Hot module replacement (HMR)
+- **Modern JavaScript**: ES modules support
+- **Optimized Builds**: Efficient production bundles
+- **Plugin Ecosystem**: Rich plugin system
+
+### 🔄 What is CRUD?
+
+**CRUD** stands for the four basic operations that can be performed on data:
+
+- **Create**: Add new records (POST request)
+- **Read**: Retrieve existing records (GET request)  
+- **Update**: Modify existing records (PUT request)
+- **Delete**: Remove records (DELETE request)
+
+#### CRUD Operations in EMS:
+- **Create**: Add new employee
+- **Read**: View employee list and individual details
+- **Update**: Edit employee information
+- **Delete**: Remove employee from system
+
+### 🏛️ What is MVC Architecture?
+
+**MVC (Model-View-Controller)** is a design pattern that separates application logic:
+
+- **Model**: Data and business logic (Entity, Repository, Service)
+- **View**: User interface (React components)
+- **Controller**: Handles requests and responses (REST Controller)
+
+#### MVC in EMS:
+- **Model**: Employee entity, EmployeeService, EmployeeRepository
+- **View**: React components (ListEmployeeComponent, EmployeeComponent)
+- **Controller**: EmployeeController with REST endpoints
 
 ---
 
@@ -246,22 +408,6 @@ VITE v7.1.3  ready in XXXms
 
 ➜  Local:   http://localhost:3000/
 ➜  Network: use --host to expose
-```
-
-### Method 2: Production Build
-
-#### Build Frontend for Production
-```bash
-cd ems-frontend
-npm run build
-npm run preview
-```
-
-#### Package Backend
-```bash
-cd ems-backend
-./mvnw package
-java -jar target/ems-backend-0.0.1-SNAPSHOT.jar
 ```
 
 ---
@@ -503,34 +649,6 @@ npm --version
 - Backend includes `@CrossOrigin` annotations
 - Check browser developer console for specific errors
 - Verify frontend is running on port 3000
-
----
-
-## 📦 Deployment
-
-### Production Deployment Options
-
-#### Option 1: Traditional Server
-```bash
-# Build frontend
-cd ems-frontend
-npm run build
-
-# Package backend
-cd ../ems-backend
-./mvnw package
-
-# Deploy JAR file
-java -jar target/ems-backend-0.0.1-SNAPSHOT.jar
-```
-
-#### Option 2: Docker (Future Enhancement)
-```dockerfile
-# Future: Docker configuration
-# Backend Dockerfile
-# Frontend Dockerfile
-# docker-compose.yml
-```
 
 ---
 
