@@ -1,7 +1,9 @@
 import axios from "axios";
 
 // Use environment variable or fallback to localhost for development
-const REST_API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api/employees';
+const REST_API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/employees';
+
+console.log('Using API URL:', REST_API_BASE_URL);
 
 export const listEmployees = () => axios.get(REST_API_BASE_URL);
 
