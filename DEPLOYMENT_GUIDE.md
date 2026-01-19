@@ -1,189 +1,184 @@
 # Employee Management System - Deployment Guide
 
-## 🚀 Deployment Setup Complete!
+## 🚀 Deployment: Vercel (Frontend) + ngrok (Backend)
 
-Your project is now configured for deployment on **Vercel (Frontend)** and **Render (Backend)**.
+Your project is configured for deployment with:
+- **Frontend:** Vercel (free, permanent hosting)
+- **Backend:** Local + ngrok (free tunnel, requires your PC running)
 
 ---
 
 ## 📋 Prerequisites
 
-Before deploying, make sure you have:
-- ✅ GitHub account
-- ✅ Vercel account (sign up at vercel.com)
-- ✅ Render account (sign up at render.com)
+- ✅ GitHub account (https://github.com)
+- ✅ Vercel account (https://vercel.com) - free, no credit card
+- ✅ ngrok account (https://ngrok.com) - free, no credit card
+- ✅ Backend running locally on port 8080
+- ✅ MySQL database running locally
 
 ---
 
-## 🎯 Step-by-Step Deployment Instructions
+## 🎯 Deployment Steps
 
-### Part 1: Push to GitHub
+### Step 1: Start Backend Locally
 
-1. **Create a new repository on GitHub:**
-   - Go to https://github.com/new
-   - Repository name: `employee-management-system` (or any name)
-   - Keep it **Public** (easier for free deployment)
-   - Don't initialize with README (we already have code)
-   - Click "Create repository"
+Make sure your Spring Boot backend is running:
+```bash
+cd ems-backend
+.\mvnw.cmd spring-boot:run
+```
 
-2. **Push your code:**
+Backend should be running on `http://localhost:8080`
+
+---
+
+### Step 2: Setup ngrok
+
+1. **Install ngrok** (already done if you followed setup)
+
+2. **Sign up at ngrok:**
+   - Go to https://dashboard.ngrok.com/signup
+   - Sign up (free, no credit card)
+   - Copy your authtoken from the dashboard
+
+3. **Configure ngrok:**
    ```bash
-   cd "c:\Users\ayush\OneDrive\Desktop\CRUD (Project1)\full-stack"
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   git branch -M main
-   git push -u origin main
+   ngrok config add-authtoken YOUR_AUTHTOKEN
    ```
 
----
+4. **Start ngrok tunnel:**
+   ```bash
+   ngrok http 8080
+   ```
 
-### Part 2: Deploy Backend on Render
-
-1. **Go to Render:** https://dashboard.render.com/
-
-2. **Create PostgreSQL Database:**
-   - Click "New +" → "PostgreSQL"
-   - Name: `ems-database`
-   - Database: `ems`
-   - User: (auto-generated)
-   - Region: Choose closest to you
-   - Plan: **Free**
-   - Click "Create Database"
-   - **COPY the "Internal Database URL"** (you'll need this)
-
-3. **Deploy Backend Service:**
-   - Click "New +" → "Web Service"
-   - Connect your GitHub repository
-   - Select the repository you just created
-   - **Root Directory:** `ems-backend`
-   - **Name:** `ems-backend`
-   - **Region:** Same as database
-   - **Branch:** `main`
-   - **Build Command:** `./mvnw clean install -DskipTests`
-   - **Start Command:** `java -jar target/ems-backend-0.0.1-SNAPSHOT.jar`
-   - **Plan:** Free
-
-4. **Add Environment Variables:**
-   - Scroll to "Environment Variables"
-   - Add these variables:
-     ```
-     SPRING_PROFILES_ACTIVE=prod
-     DATABASE_URL=(paste the Internal Database URL from step 2)
-     ```
-   - Click "Create Web Service"
-
-5. **Wait for deployment** (5-10 minutes)
-   - Copy your backend URL (e.g., `https://ems-backend-xxxx.onrender.com`)
+5. **Copy your ngrok URL** from the terminal output:
+   - Look for: `Forwarding https://xxxxx.ngrok-free.dev -> http://localhost:8080`
+   - Copy the `https://xxxxx.ngrok-free.dev` URL
 
 ---
 
-### Part 3: Deploy Frontend on Vercel
+### Step 3: Update Frontend Configuration
 
-1. **Go to Vercel:** https://vercel.com/
+Update the production API URL in `.env.production`:
+```
+VITE_API_BASE_URL=https://YOUR-NGROK-URL.ngrok-free.dev/api/employees
+```
 
-2. **Import Project:**
-   - Click "New Project"
-   - Import your GitHub repository
-   - Select the repository
+Commit and push:
+```bash
+git add .
+git commit -m "Update ngrok URL"
+git push
+```
+
+---
+
+### Step 4: Deploy Frontend to Vercel
+
+1. **Go to Vercel:**
+   - Visit https://vercel.com/new
+   - Sign in with GitHub
+
+2. **Import Repository:**
+   - Click "Import Project"
+   - Select `Crud_Application` repository
 
 3. **Configure Project:**
    - **Framework Preset:** Vite
-   - **Root Directory:** `ems-frontend`
-   - Click "Edit" on Root Directory and select `ems-frontend`
+   - **Root Directory:** Click "Edit" → Select `ems-frontend` ⚠️ **Important!**
+   - **Build Command:** `npm run build` (auto-fills)
+   - **Output Directory:** `dist` (auto-fills)
 
 4. **Add Environment Variable:**
    - Expand "Environment Variables"
-   - Add:
-     ```
-     Name: VITE_API_BASE_URL
-     Value: https://YOUR-BACKEND-URL.onrender.com/api/employees
-     ```
-     (Replace with your actual Render backend URL from Part 2, step 5)
+   - **Name:** `VITE_API_BASE_URL`
+   - **Value:** `https://YOUR-NGROK-URL.ngrok-free.dev/api/employees`
+   - Click "Add"
 
 5. **Deploy:**
    - Click "Deploy"
-   - Wait for deployment (2-3 minutes)
-
-6. **Get your frontend URL:**
-   - Copy the Vercel URL (e.g., `https://your-app.vercel.app`)
-
----
-
-### Part 4: Update Backend CORS (Important!)
-
-1. **Update your backend CORS:**
-   - Copy your Vercel URL
-   - On Render dashboard, go to your `ems-backend` service
-   - Go to "Environment" → Add variable:
-     ```
-     Name: ALLOWED_ORIGINS
-     Value: https://your-app.vercel.app
-     ```
-   - Or update the CORS annotation in EmployeeController.java:
-     ```java
-     @CrossOrigin(origins = "https://your-app.vercel.app")
-     ```
-
-2. **Redeploy backend** (if you changed code):
-   ```bash
-   git add .
-   git commit -m "Update CORS for production"
-   git push
-   ```
+   - Wait 2-3 minutes
+   - Copy your Vercel URL (e.g., `https://your-app.vercel.app`)
 
 ---
 
 ## ✅ Testing Your Deployment
 
-1. **Visit your Vercel URL** (frontend)
-2. **Try adding, editing, and deleting employees**
-3. **Check that all CRUD operations work**
+1. **Make sure ngrok is still running** (check terminal)
+2. **Visit your Vercel URL** in a browser
+3. **Test all features:**
+   - View employee list
+   - Add new employee
+   - Edit employee
+   - Delete employee
+
+---
+
+## ⚠️ Important Notes
+
+### ngrok Requirements:
+- **Your computer must be running** for the website to work
+- **ngrok must be active** in the terminal
+- **Backend must be running** on port 8080
+- **MySQL must be running** locally
+
+### ngrok URL Changes:
+- Free tier: URL changes when you restart ngrok
+- When URL changes, you must:
+  1. Update `.env.production` with new URL
+  2. Commit and push to GitHub
+  3. Vercel will auto-redeploy
+
+### To keep the same URL:
+- Don't close the ngrok terminal
+- Or upgrade to ngrok paid plan for permanent URLs
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Backend not starting?
-- Check Render logs for errors
-- Verify DATABASE_URL is correct
-- Make sure PostgreSQL database is running
+### Frontend shows "Network Error"?
+- Check if ngrok is still running
+- Check if backend is running on port 8080
+- Verify the ngrok URL in Vercel environment variables
 
-### Frontend can't connect to backend?
-- Check VITE_API_BASE_URL is correct
-- Verify backend CORS includes your Vercel domain
-- Check browser console for errors
+### ngrok shows "ERR_NGROK_..."?
+- Make sure you're using the latest ngrok version
+- Check your authtoken is configured correctly
 
-### Free tier limitations:
-- **Render:** Backend sleeps after 15 mins of inactivity (first request takes ~30 seconds)
-- **Render:** 750 hours/month limit
-- **Vercel:** Unlimited frontend hosting
+### Backend not responding?
+- Restart Spring Boot backend
+- Check MySQL is running
+- Verify port 8080 is not blocked by firewall
 
 ---
 
 ## 🔄 Making Updates
 
-After deployment, to update:
-
+### Update Frontend Code:
 ```bash
-# Make your changes
 git add .
-git commit -m "Your update message"
+git commit -m "Update message"
 git push
-
-# Vercel auto-deploys on push
-# Render auto-deploys on push
 ```
+Vercel auto-deploys on push
+
+### Update Backend Code:
+1. Stop backend (Ctrl+C)
+2. Make your changes
+3. Restart backend: `.\mvnw.cmd spring-boot:run`
+4. ngrok continues to work (no changes needed)
 
 ---
 
-## 📝 Important URLs to Save
+## 📝 Your URLs
 
-- Frontend (Vercel): https://your-app.vercel.app
-- Backend (Render): https://ems-backend-xxxx.onrender.com
-- Database (Render): (internal URL only)
-- GitHub Repo: https://github.com/YOUR_USERNAME/YOUR_REPO_NAME
+- **Frontend (Vercel):** (you'll get this after deployment)
+- **Backend (ngrok):** https://interjugal-beverly-uncountenanced.ngrok-free.dev
+- **GitHub Repo:** https://github.com/AyushChaudhary2003/Crud_Application
 
 ---
 
-## 🎉 You're Done!
+## 🎉 You're Live!
 
 Your Employee Management System is now live and accessible from anywhere!
