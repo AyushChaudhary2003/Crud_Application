@@ -22,6 +22,9 @@ import axios from "axios";
 // Use environment variable for production deployment
 const REST_API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/employees';
 
+// Configure axios to bypass ngrok warning page
+axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true';
+
 // Debug: Log the API URL being used
 console.log('🔗 API Base URL:', REST_API_BASE_URL);
 console.log('🌍 Environment:', import.meta.env.MODE);
