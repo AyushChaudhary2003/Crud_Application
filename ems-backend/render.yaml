@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: ems-backend
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: prod
