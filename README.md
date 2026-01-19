@@ -1,53 +1,22 @@
-# 🏢 Employee Management System (EMS)
+# Employee Management System
 
-A modern, full-stack web application for managing employee data with complete CRUD operations, built using Spring Boot and React. This project demonstrates proficiency in backend development, frontend development, database design, and REST API architecture.
+## 🚀 Live Demo
+- **Frontend**: [https://crud-application-snowy.vercel.app](https://crud-application-snowy.vercel.app)
+- **Backend API**: Running on local machine with ngrok tunnel
 
-## 🚀 Tech Stack
+## ✨ Features
 
-**Backend:**
-- **Java 21** - Core programming language
-- **Spring Boot 3.3.10** - Application framework with embedded Tomcat
-- **Spring Data JPA** - Data persistence and ORM layer
-- **Hibernate** - Object-Relational Mapping framework
-- **MySQL 8.0** - Relational database management system
-- **Maven** - Build automation and dependency management
+### Add New Employee
+Create new employee records with an intuitive form interface:
+- **First Name** - Employee's first name (required)
+- **Last Name** - Employee's last name (required)  
+- **Email Address** - Valid email address (required)
+- Real-time form validation
+- Clean modal design with light/dark theme support
 
-**Frontend:**
-- **React 19.1.1** - JavaScript library for building user interfaces
-- **Vite 7.1.3** - Modern build tool and development server
-- **React Router DOM** - Client-side routing for single-page application
-- **Axios** - HTTP client for API communication
-- **Bootstrap 5.3.7** - CSS framework for responsive design
-- **ESLint** - Code linting and formatting
+![Add Employee Form](screenshots/add-employee.png)
 
-## ✨ Key Features & Technical Highlights
 
-- **Complete CRUD Operations**: Create, Read, Update, Delete employee records
-- **RESTful API Design**: Follows REST principles with proper HTTP methods and status codes
-- **Responsive UI**: Mobile-first design using Bootstrap framework
-- **Form Validation**: Client-side and server-side data validation
-- **Database Integration**: MySQL with JPA/Hibernate ORM mapping
-- **Real-time Updates**: Instant UI updates after API operations
-- **Error Handling**: Comprehensive error handling on both frontend and backend
-- **Clean Architecture**: Separation of concerns with layered architecture
-- **Cross-Origin Support**: CORS configuration for frontend-backend communication
-
-## 🏗️ System Architecture
-
-### High-Level Architecture
-```
-┌─────────────────┐    HTTP/REST    ┌─────────────────┐    JPA/SQL    ┌─────────────────┐
-│                 │ ◄─────────────► │                 │ ◄───────────► │                 │
-│  React Frontend │                │ Spring Boot     │               │  MySQL Database │
-│  (Port: 3000)   │                │ Backend         │               │  (Port: 3306)   │
-│                 │                │ (Port: 8080)    │               │                 │
-└─────────────────┘                └─────────────────┘               └─────────────────┘
-```
-
-### MVC Pattern Implementation
-
-**Model (Data Layer):**
-- `Employee.java` - JPA Entity with database mappings
 - `EmployeeRepository.java` - Data Access Layer extending JpaRepository
 - `EmployeeService.java` - Business Logic Layer with service implementations
 
