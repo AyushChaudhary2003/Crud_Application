@@ -22,6 +22,11 @@ import axios from "axios";
 // Use environment variable for production deployment
 const REST_API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/employees';
 
+// Debug: Log the API URL being used
+console.log('🔗 API Base URL:', REST_API_BASE_URL);
+console.log('🌍 Environment:', import.meta.env.MODE);
+console.log('📝 VITE_API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
+
 /**
  * Fetch all employees from the backend
  * @returns Promise with list of employees
