@@ -30,7 +30,7 @@ import java.util.List;
  * 
  * @author Ayush Chaudhary
  */
-@CrossOrigin(origins = "http://localhost:3000") // Allow frontend access
+@CrossOrigin(origins = {"http://localhost:3000", "https://*.vercel.app"}) // Allow frontend access from local and Vercel
 @AllArgsConstructor // Lombok: Constructor injection
 @RestController // Spring: REST API controller
 @RequestMapping("/api/employees") // Base URL for all endpoints
