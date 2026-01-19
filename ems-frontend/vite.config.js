@@ -7,10 +7,5 @@ export default defineConfig({
 
   server: {
     port: 3000
-  },
-
-  // Make sure environment variables are available
-  define: {
-    'import.meta.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL)
   }
 })
